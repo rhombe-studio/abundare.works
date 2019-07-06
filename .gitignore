@@ -1,0 +1,8 @@
+COCO-*
+.ipynb_checkpoints
+*/**/.ipynb_checkpoints
+.DS_Store
+*/**/.DS_Store
+munch/
+fast_neural_style/snapshots/
+*/**/coco*
