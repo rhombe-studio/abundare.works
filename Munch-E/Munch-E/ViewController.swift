@@ -40,7 +40,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        Feed it to our Model
 //        Convert the CVPixelBuffer output to an UIImage
 //        Resize it to the original size saved at the first step
-
+        guard let input = selectedImg.image else {
+            print("Valid input image required!")
+            return
+        }
+        // Initialize the NST model
+        let model = StarryNight()
+        
+        // Next steps are pretty heavy, better process them on a background thread
+        DispatchQueue.global().async {
+            
+            // 1 - Transform our UIImage to a PixelBuffer of appropriate size
+            guard let cvBufferInput = input.pixelBuffer(width: 720, height: 720) else {
+                print("UIImage to PixelBuffer failed")
+                return
+            }
+            
+            // 2 - Feed that PixelBuffer to the model
+            guard let output = try? model.prediction(inputImage: cvBufferInput) else {
+                print("Model prediction failed")
+                return
+            }
+            
+            // 3 - Transform PixelBuffer output to UIImage
+            guard let outputImage = UIImage(pixelBuffer: output.outputImage) else {
+                print("PixelBuffer to UIImage failed")
+                return
+            }
+            
+            // 4 - Resize result to the original size, then hand it back to the main thread
+            let finalImage = outputImage //.resize(to: input.size)
+            DispatchQueue.main.async {
+                self.displayNewImage(image: finalImage)
+            }
+        }
+    }
+    func displayNewImage(image: UIImage?) {
+        selectedImg.image = image
     }
     
     override func viewDidLoad() {
