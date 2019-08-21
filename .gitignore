@@ -6,3 +6,8 @@ COCO-*
 munch/
 fast_neural_style/snapshots/
 */**/coco*
+__pycache__
+*/**/__pycache__
+
+*/**/*cifar*
+*/**/*.tar.gz

@@ -96,7 +96,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             return
         }
         picker.delegate = self
-        selectedImg.contentMode = UIView.ContentMode.scaleAspectFill
+        selectedImg.contentMode = UIView.ContentMode.scaleAspectFit
         selectedImg.image = image
         let imageName = UUID().uuidString
         print("IMAGE NAME: \(imageName)")

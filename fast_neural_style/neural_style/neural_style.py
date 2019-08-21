@@ -31,7 +31,12 @@ def check_paths(args):
 
 
 def train(args):
-    device = torch.device("cuda" if args.cuda else "cpu")
+    if torch.cuda.is_available():
+        print('CUDA available, using GPU.')
+        device = torch.device('cuda')
+    else:
+        print('GPU training unavailable... using CPU.')
+        device = torch.device('cpu')
 
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -44,9 +49,12 @@ def train(args):
         transforms.ToTensor(),
         transforms.Lambda(lambda x: x.mul(255))
     ])
+
+
     train_dataset = datasets.ImageFolder(args.dataset, transform)
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size)
 
+    # Image transformation network.
     transformer = TransformerNet()
 
     if args.model:
@@ -58,11 +66,13 @@ def train(args):
     optimizer = Adam(transformer.parameters(), args.lr)
     mse_loss = torch.nn.MSELoss()
 
+    # Loss Network: VGG16
     vgg = Vgg16(requires_grad=False).to(device)
     style_transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Lambda(lambda x: x.mul(255))
     ])
+    
     style = utils.load_image(args.style_image, size=args.style_size)
     style = style_transform(style)
     style = style.repeat(args.batch_size, 1, 1, 1).to(device)
@@ -80,17 +90,25 @@ def train(args):
             count += n_batch
             optimizer.zero_grad()
 
+            # CUDA if available
             x = x.to(device)
+
+            # Transform image
             y = transformer(x)
 
             y = utils.normalize_batch(y)
             x = utils.normalize_batch(x)
 
-            features_y = vgg(y)
+            # Feature map of original image
             features_x = vgg(x)
+            # Feature Map of transformed image
+            features_y = vgg(y)
 
+            # Difference between transformed image, original image.
+            # Changed to pull from features_.relu3_3 vs .relu2_2
             content_loss = args.content_weight * mse_loss(features_y.relu3_3, features_x.relu3_3)
 
+            # Compute gram matrix (dot product across each dimension G(4,3) = F4 * F3)
             style_loss = 0.
             for ft_y, gm_s in zip(features_y, gram_style):
                 gm_y = utils.gram_matrix(ft_y)
@@ -131,7 +149,12 @@ def train(args):
 
 
 def stylize(args):
-    device = torch.device("cuda" if args.cuda else "cpu")
+    if torch.cuda.is_available():
+        print('CUDA available, using GPU.')
+        device = torch.device('cuda')
+    else:
+        print('GPU training unavailable... using CPU.')
+        device = torch.device('cpu')
 
     content_image = utils.load_image(args.content_image, scale=args.content_scale)
     content_transform = transforms.Compose([
