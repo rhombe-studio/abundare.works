@@ -14,6 +14,7 @@
 		D733837E2309E493006EE265 /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733837A2309E493006EE265 /* CVPixelBuffer+Helpers.swift */; };
 		D73383812309E77F006EE265 /* CGImage+RawBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733837F2309E77F006EE265 /* CGImage+RawBytes.swift */; };
 		D73383822309E77F006EE265 /* CGImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73383802309E77F006EE265 /* CGImage+CVPixelBuffer.swift */; };
+		D795A9DA230E0F20007F30EC /* Scream.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D795A9D9230E0F1F007F30EC /* Scream.mlmodel */; };
 		D7D1D0D822D7D3AB00AEACF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1D0D722D7D3AB00AEACF9 /* AppDelegate.swift */; };
 		D7D1D0DA22D7D3AB00AEACF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1D0D922D7D3AB00AEACF9 /* ViewController.swift */; };
 		D7D1D0DD22D7D3AB00AEACF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D1D0DB22D7D3AB00AEACF9 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		D733837A2309E493006EE265 /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CVPixelBuffer+Helpers.swift"; path = "../../CoreMLHelpers/CoreMLHelpers/CVPixelBuffer+Helpers.swift"; sourceTree = "<group>"; };
 		D733837F2309E77F006EE265 /* CGImage+RawBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+RawBytes.swift"; sourceTree = "<group>"; };
 		D73383802309E77F006EE265 /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		D795A9D9230E0F1F007F30EC /* Scream.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Scream.mlmodel; path = ../../Scream.mlmodel; sourceTree = "<group>"; };
 		D7D1D0D422D7D3AB00AEACF9 /* Munch-E.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Munch-E.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7D1D0D722D7D3AB00AEACF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7D1D0D922D7D3AB00AEACF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 		D7D1D0D622D7D3AB00AEACF9 /* Munch-E */ = {
 			isa = PBXGroup;
 			children = (
+				D795A9D9230E0F1F007F30EC /* Scream.mlmodel */,
 				D73383752309E2BE006EE265 /* StarryNight.mlmodel */,
 				D7D1D0D722D7D3AB00AEACF9 /* AppDelegate.swift */,
 				D7D1D0D922D7D3AB00AEACF9 /* ViewController.swift */,
@@ -168,6 +171,7 @@
 				D73383812309E77F006EE265 /* CGImage+RawBytes.swift in Sources */,
 				D733837E2309E493006EE265 /* CVPixelBuffer+Helpers.swift in Sources */,
 				D7D1D0E022D7D3AB00AEACF9 /* Munch_E.xcdatamodeld in Sources */,
+				D795A9DA230E0F20007F30EC /* Scream.mlmodel in Sources */,
 				D733837D2309E493006EE265 /* UIImage+CVPixelBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

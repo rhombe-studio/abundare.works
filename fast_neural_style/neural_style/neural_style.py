@@ -161,8 +161,10 @@ def stylize(args):
         transforms.ToTensor(),
         transforms.Lambda(lambda x: x.mul(255))
     ])
-    content_image = content_transform(content_image)
-    content_image = content_image.unsqueeze(0).to(device)
+
+    # NOTE: Remove UNSQUEEZE, move to TransformerNet for CoreML UIImage input...
+    content_image = content_transform(content_image).to(device)
+    # content_image = content_image.unsqueeze(0).to(device)
 
     if args.model.endswith(".onnx"):
         output = stylize_onnx_caffe2(content_image, args)
@@ -178,7 +180,10 @@ def stylize(args):
             style_model.to(device)
             if args.export_onnx:
                 assert args.export_onnx.endswith(".onnx"), "Export model file should end with .onnx"
-                output = torch.onnx._export(style_model, content_image, args.export_onnx).cpu()
+                output = torch.onnx._export(style_model,
+                                            content_image,
+                                            args.export_onnx,
+                                            input_names=['inputImage']).cpu()
             else:
                 output = style_model(content_image).cpu()
     utils.save_image(args.output_image, output[0])
