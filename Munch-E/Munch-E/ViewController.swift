@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var imgSelected: Bool = false
     
     @IBOutlet weak var selectedImg: UIImageView!
     
@@ -33,52 +34,45 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     @IBAction func munchify(_ sender: Any) {
-        //
-        print("MUNCHIFYING IMAGE: \(selectedImg.image!)")
-//        Save the input image size
-//        Convert the input UIImage to a 720 x 720 CVPixelBuffer, as specified in the model view.
-//        Feed it to our Model
-//        Convert the CVPixelBuffer output to an UIImage
-//        Resize it to the original size saved at the first step
         guard let input: UIImage = selectedImg.image else {
             print("Valid input image required!")
             return
         }
+        print("MUNCHIFYING IMAGE: \(selectedImg.image!)")
         // Initialize the NST model
 //        let model = StarryNight()
         
         // TODO:
         if #available(iOS 13.0, *) {
-           let model = Scream()
+            let model = Scream()
         
             // Next steps are pretty heavy, better process them on a background thread
             DispatchQueue.global().async {
                 
-                // 1 - Transform our UIImage to a PixelBuffer of appropriate size
-                // CHANGE: transform UIImage to MLMultiArray
+                // Convert UIImage to PixelBuffer.
                 guard let cvBufferInput = input.pixelBuffer(width: 1000, height: 1000) else {
                     print("UIImage to PixelBuffer failed")
                     return
                 }
                 
-                // 2 - Feed that PixelBuffer to the model
+                // Input single PixelBuffer to model.
                 guard let output = try? model.prediction(inputImage: cvBufferInput) else {
                     print("Model prediction failed")
                     return
                 }
                 
-                // 3 - Transform PixelBuffer output to UIImage
+                // Convert PixelBuffer output to UIImage
                 guard let outputImage = UIImage(pixelBuffer: output._175) else {
                     print("PixelBuffer to UIImage failed")
                     return
                 }
                 
-                // 4 - Resize result to the original size, then hand it back to the main thread
+                // Resize here if necessary?
                 let finalImage = outputImage //.resize(to: input.size)
                 DispatchQueue.main.async {
                     self.displayNewImage(image: finalImage)
                 }
-            }
+}
         }
     }
     func displayNewImage(image: UIImage?) {
@@ -101,6 +95,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print("Failed to import UIImage for processing...")
             return
         }
+        // If it passes the guard there is an image selected.
+        // Enable the Munchify button.
+        
+        
         picker.delegate = self
         selectedImg.contentMode = UIView.ContentMode.scaleAspectFit
         selectedImg.image = image
