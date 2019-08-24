@@ -32,6 +32,16 @@
                                     <action selector="munchify:" destination="WbP-Pe-WZd" eventType="touchUpInside" id="tum-Rd-fbN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKt-oy-v31">
+                                <rect key="frame" x="255" y="35" width="120" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="openCameraButton:" destination="WbP-Pe-WZd" eventType="touchUpInside" id="Bpw-TL-Xvy"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tE6-k1-pHo">
                                 <rect key="frame" x="0.0" y="35" width="120" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -42,14 +52,12 @@
                                     <action selector="btnClick:" destination="WbP-Pe-WZd" eventType="touchUpInside" id="Zkb-9I-VHm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKt-oy-v31">
-                                <rect key="frame" x="255" y="35" width="120" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Take Photo">
-                                    <color key="titleColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obb-qa-q3q">
+                                <rect key="frame" x="276" y="596" width="79" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <state key="normal" title="Save Image"/>
                                 <connections>
-                                    <action selector="openCameraButton:" destination="WbP-Pe-WZd" eventType="touchUpInside" id="Bpw-TL-Xvy"/>
+                                    <action selector="saveImage:" destination="WbP-Pe-WZd" eventType="touchUpInside" id="Nbq-hd-bWQ"/>
                                 </connections>
                             </button>
                         </subviews>
