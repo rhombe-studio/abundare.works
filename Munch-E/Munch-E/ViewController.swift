@@ -46,7 +46,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if #available(iOS 13.0, *) {
             let model = Scream()
         
-            // Next steps are pretty heavy, better process them on a background thread
             DispatchQueue.global().async {
                 
                 // Convert UIImage to PixelBuffer.
@@ -72,8 +71,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 DispatchQueue.main.async {
                     self.displayNewImage(image: finalImage)
                 }
-}
+            }
+        } else {
+            print("iOS 13+ required. Please update your Operating System.")
         }
+        
     }
     func displayNewImage(image: UIImage?) {
         selectedImg.image = image
