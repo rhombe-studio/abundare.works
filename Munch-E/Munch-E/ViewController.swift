@@ -66,9 +66,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Initialize the NST model
 //        let model = StarryNight()
         
-        // TODO:
+        // TODO: Error message for <v13
         if #available(iOS 13.0, *) {
             let model = Scream()
+//            let model = StarryNight()
         
             DispatchQueue.global().async {
                 
